@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import net.javaguides.springboot.model.Employee;
 import net.javaguides.springboot.repository.EmployeeRepository;
 
@@ -30,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employee getEmployeeById(long id) {
+	public Employee getEmployeeById(Long id) {
 		Optional<Employee> optional = employeeRepository.findById(id);
 		Employee employee = null;
 		if (optional.isPresent()) {
@@ -42,7 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void deleteEmployeeById(long id) {
+	public void deleteEmployeeById(Long id) {
 		this.employeeRepository.deleteById(id);
 	}
 

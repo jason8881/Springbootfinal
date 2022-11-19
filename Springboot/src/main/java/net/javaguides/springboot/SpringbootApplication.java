@@ -2,9 +2,9 @@ package net.javaguides.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Component;
-@Component
-@SpringBootApplication
+
+
+@SpringBootApplication(scanBasePackageClasses = {ComponentScanMarker.class})
 public class SpringbootApplication {
 
 	public static void main(String[] args) {

@@ -10,9 +10,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Service;
 
 import net.javaguides.springboot.service.UserService;
-
+@Service
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -21,6 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private UserService userService;
 	
 	@Bean
+	
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -36,6 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
+        
+        
     }
 	
 	@Override
@@ -58,5 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.logoutSuccessUrl("/login?logout")
 		.permitAll();
 	}
+	
+	
 
 }

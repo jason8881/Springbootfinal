@@ -22,12 +22,12 @@ public class GlobalErrorHandler {
 	private enum LogStatus {
 		STACK_TRACE, MESSAGE_ONLY;
 
-		void error(String string, Exception e) {
+		void error(String string, String string1) {
 			// TODO Auto-generated method stub
 			
 		}
 
-		void error(String string, String string2) {
+		void error(String string, Exception e) {
 			// TODO Auto-generated method stub
 			
 		}

@@ -3,6 +3,7 @@ package net.javaguides.springboot.service;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,7 @@ import net.javaguides.springboot.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService{
-
+@Autowired
 	private UserRepository userRepository;
 	
 	public UserServiceImpl(UserRepository userRepository) {
@@ -27,7 +28,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
 		User user = new User();
-		
+		user.setFirstName(registrationDto.getFirstName());
+		user.setLastName(registrationDto.getLastName());
+		user.setEmail(registrationDto.getEmail());
+		user.setPassword(registrationDto.getPassword());
 		return userRepository.save(user);
 	}
 
@@ -41,7 +45,7 @@ public class UserServiceImpl implements UserService{
 		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));		
 	}
 	
-	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<org.springframework.context.annotation.Role> collection){
+	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> collection){
 		return collection.stream().map(role -> new SimpleGrantedAuthority(((Role) role).getName())).collect(Collectors.toList());
 	}
 }

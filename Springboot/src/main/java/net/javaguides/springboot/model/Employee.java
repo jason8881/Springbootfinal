@@ -7,13 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+//@Service
 @Entity
+
 @Table(name = "employees")
+
 public class Employee {
-	
+	@Autowired
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -23,12 +28,15 @@ public class Employee {
 	
 	@Column(name = "email")
 	private String email;
-	public long getId() {
+	@Bean
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	
+	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
